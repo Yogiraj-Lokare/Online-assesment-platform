@@ -1,0 +1,4 @@
+body{
+    /*background: url(/src/Assets/background.png);*/
+    background: linear-gradient(to right,rgb(46, 230, 159),rgb(93, 157, 194));
+}

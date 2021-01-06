@@ -1,0 +1,230 @@
+body {
+  margin: 0;
+  background-color: blue;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header {
+  border-bottom: 1px solid gray;
+  display: flex;
+  width: 100%;
+  min-height: 4vw;
+  justify-content: space-between;
+  background: rgb(67, 129, 243);
+}
+.test-name {
+  margin-left: 1vw;
+  margin-top: 1vw;
+  font-size: 1.5vw;
+  color: white;
+}
+.timer {
+  font-size: 1.8vw;
+  color: white;
+  background-color: rgb(25, 58, 209);
+  padding-top: 0.7vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+.remain {
+  margin-left: 2.7vw;
+  font-size: 1.5vw;
+  margin-right: 2vw;
+  color: azure;
+}
+.svgg {
+  margin-top: 0;
+  padding: 0;
+}
+circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+.counter-no {
+  display: inline-block;
+  line-height: 40px;
+}
+.end {
+  font-size: 1vw;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 0.7vw;
+  margin-top: 0.7vw;
+  margin-right: 1.2vw;
+  background-color: rgb(255, 112, 56);
+  border: none;
+  border-radius: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: white;
+}
+.end:hover {
+  background-color: rgb(250, 12, 4);
+}
+.footer {
+  height: 3.5vw;
+  width: 100%;
+  background-color: rgb(173, 173, 173);
+  text-align: center;
+}
+.main {
+  display: grid;
+  grid-template-columns: 1fr 14fr;
+  height: 48.1vw;
+}
+.list {
+  display: flex;
+  overflow: auto;
+  min-width: 6vw;
+  flex-direction: column;
+  background-color: rgb(233, 233, 233);
+}
+.qbtn {
+  margin-top: 0.6vw;
+  margin-bottom: 0.2vw;
+  min-width: 0.3vw;
+  min-height: 3.5vw;
+  padding-top: 0.3vw;
+  padding-bottom: 0.3vw;
+  outline: none !important;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  font-size: 2vw;
+  border: none;
+  background-color: coral;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.kl {
+  color: rgb(5, 146, 36);
+}
+.ques {
+  width: 93.3vw;
+  padding-right: 1vw;
+  padding-bottom: 1vw;
+  padding-left: 1vw;
+  overflow: auto;
+  background-color: rgb(236, 236, 236);
+  border-left: 1px solid gray;
+}
+.quess {
+  border: 1px solid black;
+  padding: 1vw;
+  background-color: rgb(204, 204, 204);
+}
+.maed {
+  display: flex;
+  margin-bottom: 1vw;
+  margin-top: 0.5vw;
+  border-bottom: 1px solid gray;
+  justify-content: space-between;
+}
+.markss {
+  align-self: flex-end;
+}
+.quema {
+  font-size: 1.5vw;
+}
+.bnm {
+  margin-top: 2vw;
+}
+.mcq {
+  display: flex;
+  margin-top: 1vw;
+  padding: 0.5vw;
+  border-radius: 5px;
+  border: 1.5px solid rgb(110, 110, 248);
+}
+.namein {
+  margin-left: 10px;
+  font-size: 1.2vw;
+}
+.radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 1.2vw;
+  height: 1.2vw;
+  outline: none;
+
+  border: 2px solid #999;
+  transition: 0.1s all linear;
+  min-width: 1.2vw;
+  position: relative;
+  top: 4px;
+}
+
+.radio:checked {
+  border: 4px solid rgb(44, 115, 223);
+}
+.circut {
+  background: linear-gradient(
+    to right,
+    rgb(25, 149, 221),
+    rgb(19, 53, 206)
+  ) !important;
+  color: white !important;
+}
+.circut1 {
+  background: linear-gradient(
+    to right,
+    rgb(131, 134, 136),
+    rgb(83, 83, 87)
+  ) !important;
+  color: white !important;
+}
+.hide-results {
+  display: none;
+  transition: ease-in-out 1s;
+}
+.show-results {
+  display: block;
+  transition: ease-in-out 1s;
+}
+#home_cover {
+  height: 60%;
+  text-align: center;
+  color: white;
+}
+#home_cover_img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  padding-left: 0px;
+}
+#txt_home_cover {
+  position: absolute;
+  top: 20%;
+  right: 20%;
+}
+.footer1 {
+  width: 100%;
+  height: 8%;
+
+  padding-top: 3vw;
+}
+
+.connect {
+  background-color: black;
+  padding-top: 5%;
+  text-align: center;
+  align-items: center;
+  color: #bfbfbf;
+}
+
+.connect_logo {
+  fill: #bfbfbf;
+  height: 5vw;
+  width: 5vw;
+  padding: 1vw;
+}

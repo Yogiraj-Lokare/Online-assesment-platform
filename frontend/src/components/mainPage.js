@@ -8,8 +8,63 @@ import { LoginForm } from "./HomePage_components/loginForm";
 import { RegisterForm } from "./HomePage_components/registerForm";
 import { useDispatch } from "react-redux";
 import { logout, setTokenHeader } from "../redux/actions";
+import InputBase from "@material-ui/core/InputBase";
+import { fade, makeStyles } from "@material-ui/core/styles";
+import SearchIcon from "@material-ui/icons/Search";
+import { Snackbar } from "@material-ui/core";
+import axios from "axios";
+import logo from "../Assets/testit1.jpg";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  search: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    marginRight: "1vw",
+    color: "white",
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(1),
+      width: "auto",
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
+      },
+    },
+  },
+}));
+
 export function Header1() {
   const name = localStorage.getItem("username");
+  const classes = useStyles();
   var loggedIn = false;
   if (name != null) {
     loggedIn = true;
@@ -21,6 +76,7 @@ export function Header1() {
   /*const [value,setvalue] = useState('');
     const [message,setmessage] = useState('');*/
   const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
   const handleClose = () => setShow(false);
   const [option, setOption] = useState(1);
   const opt1 = () => {
@@ -31,6 +87,18 @@ export function Header1() {
   };
   const handleShow = () => setShow(true);
   const history = useHistory();
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const { data } = await axios.post("/test/search", {
+      test_name: e.target.testname.value,
+    });
+    console.log(data);
+    if (data.error != null) {
+      setOpen(true);
+    } else {
+      history.push(`/middle/${data}`);
+    }
+  };
   const loggout = () => {
     dispatch(logout());
     history.push("/");
@@ -59,11 +127,6 @@ export function Header1() {
             id="navbarSupportedContent"
           >
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item ">
-                <NavLink to="/testcode" className="nav-link ">
-                  SEARCH
-                </NavLink>
-              </li>
               <li className="nav-item">
                 <NavLink to="/giventests" className="nav-link">
                   GIVEN-TESTS
@@ -80,6 +143,36 @@ export function Header1() {
                 </NavLink>
               </li>
             </ul>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <form
+                action="#"
+                onSubmit={(e) => {
+                  submitHandler(e);
+                }}
+              >
+                <InputBase
+                  placeholder="Search Test…"
+                  type="text"
+                  name="testname"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </form>
+            </div>
+            <Snackbar
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
+              open={open}
+              onClose={() => setOpen(false)}
+              autoHideDuration={3000}
+              message="This test is not available"
+              key="wel"
+            />
             <button
               onClick={() => loggout()}
               style={{ outline: "none" }}
@@ -97,8 +190,11 @@ export function Header1() {
             bg="white"
             className=" shadow static-top flex-row justify-content-between mb-4"
           >
-            <a className="navbar-brand" href="#">
-              TestIt
+            <a href="#">
+              <img
+                style={{ maxHeight: "40px", width: "100%" }}
+                src={logo}
+              ></img>
             </a>
             <Button variant="primary" onClick={handleShow} className="">
               Sign-In

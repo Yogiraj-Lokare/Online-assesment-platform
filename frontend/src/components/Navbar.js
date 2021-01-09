@@ -11,6 +11,8 @@ function Navbar(props) {
     (state) => state.reducer_main_test
   );
   const endTest = async () => {
+    var pre = document.getElementById("video");
+    pre.srcObject.getTracks().forEach((track) => track.stop());
     const { data } = await axios.post("/result/submit", {
       answers: answers,
       test_name: test_name,
@@ -18,18 +20,33 @@ function Navbar(props) {
     console.log(data);
     history.push(`/submit/${test_name}/${data.userScore}/${data.TotalScore}`);
   };
+  const start = () => {
+    var pre = document.getElementById("video");
+    navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+      })
+      .then((stream) => {
+        pre.srcObject = stream;
+      });
+  };
   const { start_time } = useSelector((state) => state.reducer_main_test);
   const [hour, seth] = useState(0);
   const [min, setm] = useState(0);
   const [sec, sets] = useState(0);
-  //const [init, setinit] = useState(false);
+  const [init, setinit] = useState(false);
+  const [on, setOn] = useState(false);
   useEffect(() => {
-    /*if (props.handle.active == true) {
+    if (props.handle.active == true) {
       setinit(true);
+      if (!on) {
+        setOn(true);
+        start();
+      }
     }
     if (props.handle.active === false && init === true) {
       endTest();
-    }*/
+    }
     var inter = setInterval(() => {
       const d = new Date();
       var dcsv = new Date(start_time);
@@ -54,7 +71,7 @@ function Navbar(props) {
     }, 1000);
     return () => clearInterval(inter);
   }, [sec]);
-  /*useEffect(() => {
+  useEffect(() => {
     const listner = async () => {
       endTest();
     };
@@ -62,7 +79,7 @@ function Navbar(props) {
     return () => {
       window.removeEventListener("blur", listner);
     };
-  }, []);*/
+  }, []);
   const total = props.list.length;
   var progress = (100 * props.remain) / total;
   var radius = 33;
@@ -72,6 +89,17 @@ function Navbar(props) {
   const strokeDashoffset = -circumference + (progress / 100) * circumference;
   return (
     <React.Fragment>
+      <video
+        id="video"
+        autoPlay
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          width: "250px",
+          height: "150px",
+        }}
+      ></video>
       <div className="header">
         <div className="test-name">
           <AssignmentIcon style={{ marginRight: "1vw", fontSize: "1.6em" }} />

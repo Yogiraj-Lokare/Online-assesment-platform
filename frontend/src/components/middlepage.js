@@ -72,9 +72,24 @@ function Wel(props) {
   };
   return (
     <React.Fragment>
-      <div className="text-center">welcome</div>
-      <div>test duration is 2 hours</div>
-      <span>don&apos;t change tabs</span>
+      <div className="">
+        <h2 className="text-center">Welcome</h2>
+        <h3>General Instructions</h3>
+        <div> 1. Test will only work in fullscreen mode. </div>
+        <div>
+          {" "}
+          2. So click <code>Start</code> button after test starts.
+        </div>
+        <div>
+          {" "}
+          3. Don&apos;t Change tabs during Test ,Otherwise test will be
+          automatically get submitted.
+        </div>
+        <div>
+          {" "}
+          4. Don&apos;t exit from full screen which will end the test .
+        </div>
+      </div>
       <br />
       <hr />
       <button className="btn btn-outline-primary" onClick={() => start()}>

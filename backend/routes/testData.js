@@ -122,9 +122,10 @@ app.get("/dataaccess/:id", auth, async (req, res) => {
       return res.json({ code: "error" });
     }
     const testData = await Test.findOne({ test_name: req.params.id });
-    const questionsList = await Questions.find({ test_name: req.params.id });
+    var questionsList = await Questions.find({ test_name: req.params.id });
     //console.log(testData, questionsList);
     var finalQuestionList = [];
+    questionsList = _.shuffle(questionsList);
     for (var i = 0; i < questionsList.length; i++) {
       const question = {
         marks: questionsList[i].marks,
@@ -167,7 +168,6 @@ app.get("/dataaccess/:id", auth, async (req, res) => {
       list: finalQuestionList,
       start_time: start_time,
     };
-    //console.log(finalData);
     res.json(finalData);
   } catch (e) {
     return res.json(e);

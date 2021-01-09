@@ -24,5 +24,8 @@ function lodashtrial() {
   ];
   var res = _.result(_.find(dta, { active: true }), "name");
   console.log(res);
+  var f1 = _.shuffle(dta);
+  var f2 = _.shuffle(dta);
+  console.log(f1, f2);
 }
 lodashtrial();

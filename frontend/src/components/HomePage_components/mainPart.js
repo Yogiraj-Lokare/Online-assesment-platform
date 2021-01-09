@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Header1 } from "../mainPage";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { Button, Grid, Paper, TextField, Typography } from "@material-ui/core";
+
 export function MainPart() {
   const [ser, setser] = useState("");
   const [message, setmsg] = useState("");

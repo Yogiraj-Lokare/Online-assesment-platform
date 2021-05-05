@@ -9,7 +9,7 @@ Screen shots
 ![image](https://user-images.githubusercontent.com/68686641/117137607-908a1e00-adc7-11eb-84d7-3987c658e25c.png)
 ![image](https://user-images.githubusercontent.com/68686641/117138190-4c4b4d80-adc8-11eb-927f-c2b4e1116cd2.png)
 
-# MAIN TEST ENVIRNOMENT
+* MAIN TEST ENVIRNOMENT
 
 ![image](https://user-images.githubusercontent.com/68686641/117138615-e4e1cd80-adc8-11eb-9e3c-35f8ecbb541c.png)
 
